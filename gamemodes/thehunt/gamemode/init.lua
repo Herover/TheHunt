@@ -966,7 +966,13 @@ function TeamStats()
 	
 	
 	timer.Simple(20, function() PrintMessage(HUD_PRINTTALK, "You can check the scoreboard by typing !teamscore.") end)
-	timer.Simple(40, function() PrintMessage(HUD_PRINTTALK, "The Hunt doesn't feature a map voting addon yet, I hope you're playing on a server wich has one. Try !rtv or !votemap.") end)
+	timer.Simple(40, function()
+		if MapVote then
+			MapVote.Start(nil, nil, nil, nil)
+		else
+			PrintMessage(HUD_PRINTTALK, "The Hunt doesn't feature a map voting addon yet, I hope you're playing on a server wich has one. Try !rtv or !votemap.")
+		end
+	end)
 	
 	
 	-- Read and rewrite the best_team file with the new data (doesn't matter if there's no new data to add, rewrites it again with the old data)
